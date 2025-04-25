@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Dashboard</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg></a></li>
+                    <li class="breadcrumb-item">Main</li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row size-column">
+        <div class="col-xxl-12 col-md-12 box-col-12 grid-ed-12">
+            <div class="row d-flex align-items-start">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="get" class="form-horizontal form-bordered">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label class="text-white"><span>Please take note of your referral link below,
+                                                All players that will register under this link
+                                                will automatically be under your account.</span></label>
+                                        <div class="mb-md">
+                                            <input type="text" style="font-size: 18px" class="form-control" #userreflink
+                                                [value]="(getUser() | async)?.refUrl" readonly />
+                                        </div>
+                                        <div class="mb-md mt-2">
+                                            <button type="button" class="btn btn-danger"
+                                                (click)="copyToClipboard(userreflink)">
+                                                Copy My Referral Link
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body primary">
+                                    <span class="f-light">Current Commission ({{
+                                        (getUser() | async)?.percentage
+                                        }}
+                                        %)</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>₱{{
+                                            (getAccount() | async)?.commission | number : "1.2"
+                                            }}</h4>
+                                        <button class="btn btn-sm text-danger"
+                                            (click)="updatePlasada('sabong')">Update</button>
+                                        <button class="btn btn-sm text-success"
+                                            (click)="withdrawComs('sabong')">Withdraw</button>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body success">
+                                    <span class="f-light">Decimal Value</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>₱{{decimal | number : "1.2"}}</h4>
+                                        <button class="btn btn-sm text-success"
+                                            (click)="withdrawDecimal()">Withdraw</button>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

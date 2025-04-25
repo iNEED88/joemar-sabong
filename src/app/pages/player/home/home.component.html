@@ -1,0 +1,156 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Home</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg></a></li>
+                    <li class="breadcrumb-item">Sabong</li>
+                    <li class="breadcrumb-item active">Home</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row size-column">
+        <div class="col-xxl-12 col-md-12 box-col-12 grid-ed-12">
+            <div class="row d-flex align-items-start">
+                <div class="col-xxl-5 col-md-7 box-col-7">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card o-hidden">
+                                <div class="card-body sabong-widget">
+                                    <span class="f-w-500 f-light">Your Points</span>
+                                    <h4 class="mb-3 mt-1 f-w-500 mb-0 f-22">₱{{ (getAccount() | async)?.points | number
+                                        : "1.2" }}</h4>
+                                    <a class="btn btn-primary btn-hover-effect f-w-500" href="#">Withdraw</a>
+                                    <div class="mobile-right-img">
+                                        <img class="mobile-img" src="../assets/images/versus.png" alt="versus">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-7 col-md-5 box-col-5">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body primary">
+                                    <span class="f-light">WS Rewards (Coming Soon)</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>₱0</h4>
+                                        <button class="btn btn-sm text-danger">Transfer to Wallet</button>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body warning">
+                                    <span class="f-light">Highest Win Streak (Coming Soon)</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>0</h4>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body secondary">
+                                    <span class="f-light">Total Withdraw</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>₱0</h4>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card small-widget">
+                                <div class="card-body success">
+                                    <span class="f-light">Total Cash In</span>
+                                    <div class="d-flex align-items-end gap-1">
+                                        <h4>₱0</h4>
+                                    </div>
+                                    <div class="bg-gradient">
+                                        <svg class="stroke-icon svg-fill">
+                                            <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-xl-4 col-md-6 box-col-4">
+            <div class="card games-card discover">
+                <img class="img-fluid" src="../assets/images/sabong.png" alt="sabong">
+                <div class="card-body pt-3">
+                    <h5 class="mb-1">Sabong</h5>
+                    <p class="f-light">Bet, Watch, and Experience the Ultimate Cockfighting Action!</p>
+                    <a class="games-btn btn btn-hover-effect btn-primary f-w-500" routerLink="/player/sabong-home">Play
+                        Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-xl-4 col-md-6 box-col-4">
+            <div class="card games-card discover">
+                <img class="img-fluid" src="../assets/images/lotto.png" alt="lotto">
+                <div class="card-body pt-3">
+                    <h5 class="mb-1">Lotto</h5>
+                    <p class="f-light">Three Digits, Unlimited Possibilities – Play 3D Lotto!</p>
+                    <a class="games-btn btn btn-hover-effect btn-primary f-w-500">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-xl-4 col-md-6 box-col-4">
+            <div class="card games-card discover">
+                <img class="img-fluid" src="../assets/images/casino.png" alt="casino">
+                <div class="card-body pt-3">
+                    <h5 class="mb-1">Scatter Online</h5>
+                    <p class="f-light">Experience the thrill of slots, poker, and more!</p> <br>
+                    <a class="games-btn btn btn-hover-effect btn-primary f-w-500">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-xl-4 col-md-6 box-col-4">
+            <div class="card games-card discover">
+                <img class="img-fluid" src="../assets/images/vivamax.png" alt="vivamax">
+                <div class="card-body pt-3">
+                    <h5 class="mb-1">VIVAMAX</h5>
+                    <p class="f-light">Watch the latest movies and exclusive content on Viva Max!</p>
+                    <a class="games-btn btn btn-hover-effect btn-primary f-w-500">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

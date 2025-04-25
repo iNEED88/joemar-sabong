@@ -1,0 +1,136 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "sabong-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "standalone": false
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/sabong-app",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/css/fontawesome.css",
+              "src/assets/css/vendors/icofont.css",
+              "src/assets/css/vendors/themify.css",
+              "src/assets/css/vendors/feather-icon.css",
+              "src/assets/css/vendors/slick.css",
+              "src/assets/css/vendors/slick-theme.css",
+              "src/assets/css/vendors/scrollbar.css",
+              "src/assets/css/vendors/prism.css",
+              "src/assets/css/vendors/bootstrap.css",
+              "src/assets/css/style.css",
+              "src/assets/css/color-1.css",
+              "src/assets/css/responsive.css",
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap/bootstrap.bundle.min.js",
+              "src/assets/js/icons/feather-icon/feather.min.js",
+              "src/assets/js/icons/feather-icon/feather-icon.js",
+              "src/assets/js/scrollbar/simplebar.min.js",
+              "src/assets/js/scrollbar/custom.js",
+              "src/assets/js/config.js",
+              "src/assets/js/sidebar-menu.js",
+              "src/assets/js/sidebar-pin.js",
+              "src/assets/js/slick/slick.min.js",
+              "src/assets/js/slick/slick.js",
+              "src/assets/js/header-slick.js",
+              "src/assets/js/prism/prism.min.js",
+              "src/assets/js/script.js",
+              "src/assets/js/script1.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "sabong-app:build:production"
+            },
+            "development": {
+              "buildTarget": "sabong-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "sabong-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}

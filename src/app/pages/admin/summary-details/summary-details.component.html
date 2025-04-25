@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Summary Details</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg></a></li>
+                    <li class="breadcrumb-item">Accounting</li>
+                    <li class="breadcrumb-item active">Summary Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Total Players</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>{{model.totalPlayers}}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Total Player Points</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>₱{{model.totalPlayerPoints | number : "1.2"
+                                }}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Total Draw Bets</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>₱{{model.totalDrawbets | number : "1.2"}}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Total Agent Points</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>₱{{model.totalAgentsPoints | number : "1.2"}}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Total Agent Commission</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>₱{{model.totalAgentCommission | number : "1.2"}}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card small-widget">
+                    <div class="card-body primary">
+                        <span class="f-light">Decimal</span>
+                        <div class="d-flex align-items-end gap-1">
+                            <h4>₱{{model.decimal | number : "1.2"}}</h4>
+
+                        </div>
+                        <div class="bg-gradient">
+                            <svg class="stroke-icon svg-fill">
+                                <use href="../assets/svg/icon-sprite.svg#profit"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

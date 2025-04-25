@@ -1,0 +1,336 @@
+.col-containerghj {
+    display: table;
+    width: 100%;
+}
+
+.wrapper {
+    padding: 0 2rem;
+    font-family: source sans pro, sans-serif;
+    color: #fff;
+    display: flex;
+}
+
+.blink-me {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.flex-container {
+    display: inline;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+
+/* .currentBets {
+    max-width: 720px;
+    overflow-x: auto;
+    max-height: 300px;
+    margin: 2rem 0;
+  } */
+.currentBets {
+    max-width: 100%;
+    overflow-x: auto;
+    max-height: 300px;
+    margin: 2rem 0;
+}
+
+.play .results .currentBets table {
+    border-collapse: collapse;
+    background: #2c3c4c;
+}
+
+.play .results .currentBets table tr td {
+    padding: 2.25px;
+    width: 25px;
+    height: 25px;
+    line-height: 43px;
+    text-align: center;
+    border-radius: 50%;
+    background: #ffffff21;
+}
+
+.play .results .currentBets table tr td div {
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.tablemeron {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #f34141 !important;
+    border-radius: 1.2rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+
+.tabledraw {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #23b04b !important;
+    border-radius: 1.2rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+
+.tablecancelled {
+    background-color: #464749 !important;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+
+.tablewala {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: #167df1 !important;
+    border-radius: 1.2rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+}
+
+.tablewala::after,
+.tablemeron::after,
+.tablecancelled::after,
+.tabledraw::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .settings {
+        margin-top: 15px;
+    }
+
+    .ontopmargin {
+        margin-top: 60px;
+    }
+
+    .embed-responsive.embed-responsive-16by9 {
+        padding-bottom: 100%;
+    }
+
+    .currentBets {
+        max-width: calc(100vw - 40px) !important;
+
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+
+    .currentBets {
+        max-width: 100vw;
+    }
+
+}
+
+
+
+/* Container for pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Pagination buttons */
+.pagination a {
+    color: #fff;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #11cdef;
+    /* Blue base color */
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+/* Hover and active effects */
+.pagination a:hover,
+.pagination a.active {
+    background-color: #007bff;
+    /* Darker blue on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled button style */
+.pagination a.disabled {
+    pointer-events: none;
+    background-color: #6c757d;
+    /* Gray for disabled */
+    color: #fff;
+    opacity: 0.5;
+
+
+}
+
+
+
+
+.blinkMeron {
+
+    /* background-color: #8d4c46; */
+    animation: blinkmeron 1s linear infinite !important;
+}
+
+@keyframes blinkmeron {
+    0% {
+        background: #352221;
+    }
+
+    50% {
+        background: #643331;
+    }
+
+
+    80% {
+        background: #dd1e10;
+    }
+
+    100% {
+        background: #ff000d;
+    }
+}
+
+
+
+.blinkWala {
+
+    /* background-color: #8d4c46; */
+    animation: blinkwala 1s linear infinite !important;
+}
+
+@keyframes blinkwala {
+    0% {
+        background: #262e3b;
+    }
+
+    50% {
+        background: #384c6b;
+    }
+
+    80% {
+        background: #0d61df;
+    }
+
+    100% {
+        background: #0066ff;
+    }
+}
+
+
+.blinkDraw {
+
+    /* background-color: #8d4c46; */
+    animation: blinkdraw 1s linear infinite !important;
+}
+
+@keyframes blinkdraw {
+    0% {
+        background: #2f5d3c;
+    }
+
+    50% {
+        background: #2d7040;
+    }
+
+
+    80% {
+        background: #1c9e41;
+    }
+
+    100% {
+        background: #23b04b;
+    }
+}
+
+.blinkWinner {
+
+    box-shadow: 0 0 20px #7f00ff, 0 0 30px #9831ff, 0 0 40px #ac59ff;
+
+    animation: blinkWinner 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes blinkWinner {
+    0% {
+        box-shadow: 0 0 20px #2d1544, 0 0 30px #2d1247, 0 0 40px #300d50;
+    }
+
+    50% {
+        box-shadow: 0 0 20px #4e2277, 0 0 30px #44186d, 0 0 40px #4a1080;
+    }
+
+    80% {
+        box-shadow: 0 0 20px #7229b6, 0 0 30px #5c169e, 0 0 40px #7511d3;
+    }
+
+    100% {
+        box-shadow: 0 0 20px #7f00ff, 0 0 30px #9831ff, 0 0 40px #ac59ff;
+    }
+}
+
+
+.drawResult {
+    background-color: #08a71d !important;
+    color: #fff;
+    padding: 1px;
+    border-radius: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.meronResult {
+    background-color: #f34141;
+    color: #fff;
+    padding: 1px;
+    border-radius: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.walaResult {
+    background-color: #1d81f1;
+    color: #fff;
+    padding: 1px;
+    border-radius: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.cancelledResult {
+    background-color: #3c4550;
+    color: #fff;
+    padding: 1px;
+    border-radius: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+}

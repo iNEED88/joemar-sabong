@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.body-creds {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../../assets/images_creds/sabongbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.box-area {
+    max-width: 930px;
+    width: 100%;
+    position: relative;
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 20px;
+    padding: 1.5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.box-area:hover {
+    transform: translateY(-5px);
+}
+
+.box-area::after {
+    position: absolute;
+    content: "";
+    top: -10px;
+    left: -10px;
+    background: radial-gradient(ellipse at center,
+            #ffffff,
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.1),
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0));
+    width: 30px;
+    height: 30px;
+    filter: blur(1px);
+}
+
+.row {
+    background: transparent !important;
+    backdrop-filter: blur(10px);
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px;
+    backdrop-filter: blur(8px);
+}
+
+.right-box input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(4px);
+}
+
+.right-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.right-box input:focus::placeholder {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.right-box .header-text h2,
+.right-box .header-text p {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: rgba(16, 60, 190, 0.6) !important;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 15px rgba(16, 60, 190, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: rgba(16, 60, 190, 0.8) !important;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.left-box {
+    background: linear-gradient(135deg, rgba(16, 60, 190, 0.6), rgba(59, 89, 152, 0.4)) !important;
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+}
+
+::placeholder {
+    font-size: 16px;
+}
+
+.rounded-4 {
+    border-radius: 20px;
+}
+
+.rounded-5 {
+    border-radius: 30px;
+}
+
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: rgba(16, 60, 190, 0.8);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.form-check-label {
+    color: #ffffff !important;
+}
+
+.forgot a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/*------------ For small screens------------*/
+@media only screen and (max-width: 768px) {
+    .box-area {
+        margin: 0 10px;
+        transform: scale(0.95);
+    }
+
+    .left-box {
+        height: auto;
+        overflow: hidden;
+        padding: 3px;
+    }
+
+    .left-box p.text-white.fs-2,
+    .left-box small.text-white {
+        display: none;
+    }
+
+    .featured-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .featured-image img {
+        width: 8px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .right-box {
+        padding: 15px;
+    }
+
+    .header-text {
+        margin-bottom: 15px !important;
+    }
+
+    .input-group {
+        margin-bottom: 10px !important;
+    }
+
+    .form-control-lg {
+        padding: 0.3rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .featured-image img {
+        width: 6px;
+    }
+
+    .left-box {
+        padding: 2px;
+    }
+
+    .right-box {
+        padding: 12px;
+    }
+
+    .box-area {
+        transform: scale(0.9);
+    }
+}

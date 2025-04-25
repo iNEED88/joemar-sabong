@@ -1,0 +1,366 @@
+<div class="container-fluid">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Sabong Events</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">
+                            <svg class="stroke-icon">
+                                <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
+                            </svg></a></li>
+                    <li class="breadcrumb-item">Sabong</li>
+                    <li class="breadcrumb-item active">Sabong Events</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="font-size: 13px">
+                    <button class="btn btn-success btn-small pull-right" data-bs-toggle="modal"
+                        data-bs-target="#addArena">
+                        <i class="fa fa-plus"></i> Create Event
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 text-end">
+                            <div>
+                                <select class="form-select" id="pageSize" [value]="pageSize"
+                                    (change)="onPageSizeChange($event)">
+                                    <option *ngFor="let size of [5, 10, 20, 50, 100]" [value]="size">{{ size }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search transactions...">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <!-- Loading spinner, visible when 'isLoading' is true -->
+                        <div *ngIf="isLoading" class="loading-container">
+                            <div class="spinner"></div>
+                        </div>
+                        <table *ngIf="!isLoading && results.length > 0"
+                            class="table table-responsive-sm table-striped table-bordered mb-0">
+                            <thead>
+                                <tr style="font-size: 13px">
+                                    <th>Date Created</th>
+                                    <th>Event Name</th>
+                                    <th>Status</th>
+                                    <th>Plasada</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of results" style="font-size: 13px">
+                                    <th>{{ item.createdAt | date : "medium" }}</th>
+                                    <th>{{ item.name }}</th>
+                                    <th>{{ item.status }}</th>
+                                    <th>{{ item.plasada }}</th>
+                                    <th>
+                                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#editArena" (click)="currentEvent = item">
+                                            Edit
+                                        </button>
+                                        <button style="margin-left: 5px" class="btn btn-sm btn-success"
+                                            data-bs-toggle="modal" data-bs-target="#duplicateArena"
+                                            (click)="currentEvent = item">
+                                            Duplica
+                                        </button>
+                                        <button style="margin-left: 5px" class="btn btn-sm btn-warning"
+                                            [routerLink]="'/operator/arena/' + item.id">
+                                            Preview
+                                        </button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- NO USERS -->
+                    <div *ngIf="!isLoading && results.length === 0">
+                        No Event(s) found.
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="pagination-footer">
+
+
+                        <!-- ENTRIES INFO -->
+                        <div *ngIf="!isLoading && results.length > 0">
+                            Showing
+                            {{ (pageNumber - 1) * pageSize + 1 }}
+                            to
+                            {{ getShowingRangeEnd() }}
+                            of
+                            {{ totalItems }}
+                            entries
+                        </div>
+
+                        <!-- PAGINATION CONTROLS -->
+                        <div *ngIf="totalPages > 1">
+                            <div class="pagination-controls"
+                                style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <button class="btn btn-sm btn-outline-primary" (click)="goToPage(pageNumber - 1)"
+                                    [disabled]="pageNumber === 1">
+                                    Previous
+                                </button>
+
+                                <select class="form-select form-select-sm" style="width: auto;" [ngModel]="pageNumber"
+                                    (ngModelChange)="goToPage($event)">
+                                    <option *ngFor="let i of [].constructor(totalPages); let page = index"
+                                        [value]="page + 1">
+                                        Page {{ page + 1 }}
+                                    </option>
+                                </select>
+
+                                <button class="btn btn-sm btn-outline-primary" (click)="goToPage(pageNumber + 1)"
+                                    [disabled]="pageNumber === totalPages">
+                                    Next
+                                </button>
+
+                                <button class="btn btn-sm btn-outline-secondary" (click)="goToPage(totalPages)"
+                                    [disabled]="pageNumber === totalPages">
+                                    Last
+                                </button>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addArena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Arena</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.name" type="text" class="form-control" id="name" name="name"
+                            placeholder="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="meronName" class="col-sm-2 control-label">Left Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.leftName" type="text" class="form-control" id="leftName"
+                            name="leftName" placeholder="Left Name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="meronName" class="col-sm-2 control-label">Left Color</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.leftColor" type="text" class="form-control" id="leftColor"
+                            name="leftColor" placeholder="Left Color" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rightName" class="col-sm-2 control-label">Right Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.rightName" type="text" class="form-control" id="rightName"
+                            name="rightName" placeholder="Right Name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rightColor" class="col-sm-2 control-label">Right Color</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.rightColor" type="text" class="form-control" id="rightColor"
+                            name="rightColor" placeholder="Right Color" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="plasada" class="col-sm-2 control-label">Plasada</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.plasada" type="number" class="form-control" id="plasada"
+                            name="plasada" placeholder="Plasada" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="videoUrl" class="col-sm-2 control-label">Video Url</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="model.videoUrl" type="text" class="form-control" id="videoUrl"
+                            name="videoUrl" placeholder="Video Url" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" (click)="addEvent()">
+                    Add Event
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editArena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Arena</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.name" type="text" class="form-control" id="name" name="name"
+                            placeholder="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="meronName" class="col-sm-2 control-label">Left Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.leftName" type="text" class="form-control" id="leftName"
+                            name="leftName" placeholder="Meron Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="meronName" class="col-sm-2 control-label">Left Color</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.leftColor" type="text" class="form-control" id="leftColor"
+                            name="leftColor" placeholder="Left Color" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="walaName" class="col-sm-2 control-label">Right Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.rightName" type="text" class="form-control" id="rightName"
+                            name="rightName" placeholder="Right Name" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="walaName" class="col-sm-2 control-label">Right Color</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.rightColor" type="text" class="form-control" id="rightColor"
+                            name="rightColor" placeholder="Right Color" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="plasada" class="col-sm-2 control-label">Plasada</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.plasada" type="number" class="form-control" id="plasada"
+                            name="plasada" placeholder="Plasada" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="videoUrl" class="col-sm-2 control-label">Video Url</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.videoUrl" type="text" class="form-control" id="videoUrl"
+                            name="videoUrl" placeholder="Video Url" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status" class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-12">
+                        <select class="form-control" [(ngModel)]="currentEvent.status">
+                            <option value="open">OPEN</option>
+                            <option value="close">CLOSE</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editEvent()">
+                    Edit Event
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="duplicateArena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Arena</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.name" type="text" class="form-control" id="name" name="name"
+                            placeholder="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="meronName" class="col-sm-2 control-label">Meron Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.meronName" type="text" class="form-control" id="meronName"
+                            name="meronName" placeholder="Meron Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="walaName" class="col-sm-2 control-label">Wala Name</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.walaName" type="text" class="form-control" id="walaName"
+                            name="walaName" placeholder="Wala Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="plasada" class="col-sm-2 control-label">Plasada</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.plasada" type="number" class="form-control" id="plasada"
+                            name="plasada" placeholder="Plasada" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="videoUrl" class="col-sm-2 control-label">Video Url</label>
+                    <div class="col-sm-12">
+                        <input [(ngModel)]="currentEvent.videoUrl" type="text" class="form-control" id="videoUrl"
+                            name="videoUrl" placeholder="Video Url" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="duplicateEvent()">
+                    Duplicate Event
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
